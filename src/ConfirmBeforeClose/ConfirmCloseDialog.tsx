@@ -16,10 +16,10 @@ import {
     type ConfirmBeforeCloseApp,
     getNextConfirmDialog,
     getShowConfirmCloseDialog,
-    onUserConfirmAll,
     setActionOnAllComplete,
     setShowCloseDialog,
 } from './confirmBeforeCloseSlice';
+import { onUserConfirmAll } from './effects';
 
 export default () => {
     const dispatch = useDispatch();

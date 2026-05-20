@@ -11,8 +11,8 @@ every new version is a new major version.
 
 ### Fixed
 
-- Application does not reopen when resetting defaults setting when some close
-  critica section is active.
+- In case app is executing important task application will properly reopen when
+  resetting defaults.
 
 ## 247.0.0 - 2026-04-23
 

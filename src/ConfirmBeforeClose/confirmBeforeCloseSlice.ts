@@ -4,7 +4,6 @@
  * SPDX-License-Identifier: LicenseRef-Nordic-4-Clause
  */
 
-import { getCurrentWindow } from '@electron/remote';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import { v4 as uuid } from 'uuid';
 
@@ -93,7 +92,7 @@ export const getNextConfirmDialog = (state: RootState) =>
 export const getShowConfirmCloseDialog = (state: RootState) =>
     state.confirmBeforeCloseDialog.showCloseDialog;
 
-const getActionOnComplete = (state: RootState) =>
+export const getActionOnComplete = (state: RootState) =>
     state.confirmBeforeCloseDialog.actionOnAllComplete;
 
 export const preventAppCloseUntilComplete =
@@ -116,12 +115,3 @@ export const preventAppCloseUntilComplete =
         );
         promise.finally(() => dispatch(clearConfirmBeforeClose(id)));
     };
-
-export const onUserConfirmAll = (): AppThunk => (_, getState) => {
-    const actionType = getActionOnComplete(getState());
-    if (actionType === 'close') {
-        getCurrentWindow().close();
-    } else {
-        getCurrentWindow().reload();
-    }
-};
