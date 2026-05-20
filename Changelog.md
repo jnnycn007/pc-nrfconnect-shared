@@ -7,6 +7,13 @@ This project does _not_ adhere to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) but contrary to it
 every new version is a new major version.
 
+## 248.0.0 - 2026-05-20
+
+### Fixed
+
+- In case app is executing important task application will properly reopen when
+  resetting defaults.
+
 ## 247.0.0 - 2026-04-23
 
 ### Changed
@@ -48,14 +55,12 @@ structure of `Card` changed. Follow this format:
 import { Card } from '@nordicsemiconductor/pc-nrfconnect-shared';
 
 <Card>
-  <Card.Header className="tw-flex tw-flex-row tw-justify-between">
-    <Card.Header.Title cardTitle="your title here" />
-    { /* your button here */ }
-  </Card.Header>
-  <Card.Body>
-    { /* your card content here */ }
-  </Card.Body>
-</Card>
+    <Card.Header className="tw-flex tw-flex-row tw-justify-between">
+        <Card.Header.Title cardTitle="your title here" />
+        {/* your button here */}
+    </Card.Header>
+    <Card.Body>{/* your card content here */}</Card.Body>
+</Card>;
 ```
 
 ## 244.0.0 - 2026-01-22
