@@ -10,7 +10,7 @@ on:
                 type: string
             node_version:
                 type: number
-            doc_bundle_name:
+            unified_doc_project_name:
                 type: string
         secrets:
             COM_NORDICSEMI_FILES_PASSWORD_SWTOOLS_FRONTEND:
@@ -35,6 +35,8 @@ jobs:
             GH_TOKEN: ${{ github.token }}
         environment:
             name: ${{ inputs.source }}
+        outputs:
+            tag: ${{ steps.create_github_release.outputs.tag }}
 
         steps:
             - name: Fail on missing Artifactory token
@@ -66,6 +68,7 @@ jobs:
                     --source '${{ inputs.source }}'
 
             - name: Create release on GitHub
+              id: create_github_release
               if: inputs.source == 'official (external)'
               run: |
                   TAG="v${{ needs.build.outputs.version }}"
@@ -82,6 +85,8 @@ jobs:
                     --repo ${{ github.repository }} \
                     --notes-file release_notes.md \
                     ./*.tgz
+
+                  echo "tag=$TAG" >> "$GITHUB_OUTPUT"
 
     check-if-docs-exist:
         needs: release
@@ -103,13 +108,13 @@ jobs:
                   fi
 
     publish-docs:
-        needs: check-if-docs-exist
+        needs: [build, release, check-if-docs-exist]
         if: |
-            inputs.doc_bundle_name &&
+            inputs.unified_doc_project_name &&
             inputs.source == 'official (external)' &&
             needs.check-if-docs-exist.outputs.docs_exist == 'true'
-        uses: ./.github/workflows/docs-publish.yml
+        uses: ./.github/workflows/notify-swtools-app-docs.yml
         with:
-            release-type: prod
-            bundle-name: ${{ inputs.doc_bundle_name }}
+            project-name: ${{ inputs.unified_doc_project_name }}
+            tag: ${{ needs.release.outputs.tag }}
         secrets: inherit
