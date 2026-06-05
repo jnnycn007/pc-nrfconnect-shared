@@ -9,17 +9,16 @@ every new version is a new major version.
 
 ## 250.0.0 - 2026-06-05
 
-### Added
+### Changed
 
-- Exported `PseudoButton` component so it is available to consumers of this
-  library.
+- nRF92 family will always have modem trait.
 
 ## 249.0.0 - 2026-06-03
 
 ### Changed
 
 - Adjusted app release workflow for unified docs.
-- Updated list of the supported devices.
+- Updated the list of supported devices.
 
 ### Steps to upgrade when using this package
 
