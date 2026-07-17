@@ -9,6 +9,10 @@ every new version is a new major version.
 
 ## 255.0.0 - 2026-07-17
 
+### Fixed
+
+- Running Jest was broken with shared 254.
+
 ### Removed
 
 - `removeAnsi` string helper because of a problematic library.
