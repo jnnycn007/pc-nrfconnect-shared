@@ -14,7 +14,7 @@ import * as module from 'node:module';
 import * as path from 'node:path';
 import tailwindcss from 'tailwindcss';
 
-import { chromeWithoutBuild } from './versions';
+import { chromeToBuildFor } from './versions';
 
 const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
 
@@ -37,7 +37,7 @@ const options = (
 ) =>
     ({
         format: 'iife',
-        target: `chrome${chromeWithoutBuild}`,
+        target: `chrome${chromeToBuildFor}`,
         sourcemap: true,
         metafile: false,
         minify: process.argv.includes('--prod'),
