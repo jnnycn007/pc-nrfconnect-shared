@@ -10,10 +10,19 @@ import { execSync } from 'child_process';
 
 import * as versions from './versions';
 
+const runNpmLsElectron = () => {
+    try {
+        return execSync('npm ls electron --json', { encoding: 'utf8' });
+    } catch {
+        console.error(
+            '\nFailed to get the currently used version of electron. Maybe running `npm ci` is needed.',
+        );
+        process.exit(1);
+    }
+};
+
 const main = async () => {
-    const npmLsElectronResult = execSync('npm ls electron --json', {
-        encoding: 'utf8',
-    });
+    const npmLsElectronResult = runNpmLsElectron();
     const installedElectronVersion =
         JSON.parse(npmLsElectronResult).dependencies.electron.version;
 
