@@ -21,6 +21,7 @@
         "check:lint": "eslint --color .",
         "check:types": "tsc --noEmit",
         "check:license": "tsx scripts/nrfconnect-license.ts check",
+        "check-versions": "tsx scripts/check-versions.ts",
         "create-source": "tsx scripts/create-source.ts",
         "prepare": "tsx scripts/installHusky.ts && tsx scripts/build-shared.ts",
         "prepare-shared-release": "tsx scripts/prepare-shared-release.ts",

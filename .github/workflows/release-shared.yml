@@ -42,7 +42,7 @@ jobs:
 
             - run: npm ci
             - run: npm run check
-            - run: npx tsx scripts/check-versions.ts
+            - run: npm run check-versions
             - run: npm test
             - run: npm pack
 
