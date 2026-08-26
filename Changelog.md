@@ -7,7 +7,11 @@ This project does _not_ adhere to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) but contrary to it
 every new version is a new major version.
 
-## Unreleased
+## 259.0.0 - 2026-08-26
+
+### Changed
+
+- Updated Electron to 43.4.1.
 
 ### Fixed
 
